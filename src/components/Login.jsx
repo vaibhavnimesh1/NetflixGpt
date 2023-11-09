@@ -5,14 +5,18 @@ import { useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignin, setIsSignin] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [message, setMessage] = useState(null);
+
   const email = useRef("");
   const password = useRef("");
   const fullName = useRef("");
@@ -29,7 +33,7 @@ const Login = () => {
       isSignin
     );
     setErrorMessage(message);
-    if(message) return;
+    if (message) return;
     if (!isSignin) {
       createUserWithEmailAndPassword(
         auth,
@@ -39,7 +43,30 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          setErrorMessage("dsds")
+          // console.log(user);
+
+          setErrorMessage("Sign Up Succesfully!!!");
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            photoURL:
+              "https://accounts.google.com/SignOutOptions?hl=en&continue=https://www.google.com%3Fhl%3Den-US&ec=GBRA8wE",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
+
           // ...
         })
         .catch((error) => {
@@ -47,8 +74,6 @@ const Login = () => {
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
         });
-        
-        
     } else {
       signInWithEmailAndPassword(
         auth,
@@ -58,10 +83,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // console.log(user);
-          Navigate("/browse")
-          
-          // ...
+          navigate("/browse");
+          // ...const auth = getAuth();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -81,8 +104,10 @@ const Login = () => {
         />
       </div>
       <form
-        onSubmit={(e) => {e.preventDefault()
-        handleSubmitForm()}}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmitForm();
+        }}
         className="absolute rounded-lg w-3/12 p-8 z-40 my-20 mx-auto left-0 right-0 bg-opacity-80 bg-black text-white"
       >
         <h1 className="text-2xl mb-7">{isSignin ? "Sign In" : "Sign Up"}</h1>
@@ -114,7 +139,7 @@ const Login = () => {
           // onClick={handleSubmitForm}
           className="w-full px-3 py-2 mb-6 rounded-md bg-red-600 text-white"
         >
-          {isSignin ? "Sign In" : "Sign Up"}  {message}
+          {isSignin ? "Sign In" : "Sign Up"}
         </button>
         <p className="text-sm text-gray-600">
           {isSignin ? "New to Netflix?" : "Already a user "}
@@ -125,7 +150,6 @@ const Login = () => {
             {isSignin ? " Sign up now." : " Sign in here"}
           </span>
         </p>
-        
       </form>
     </>
   );

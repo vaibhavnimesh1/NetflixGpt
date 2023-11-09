@@ -1,4 +1,5 @@
 export const checkValidateUser = (email, password,fullName,isSignin) => {
+  const isfullNameValid = /^[a-zA-Z ]{2,40}$/.test(fullName)
   const isEmailValid =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
       email
@@ -8,7 +9,6 @@ export const checkValidateUser = (email, password,fullName,isSignin) => {
       password
     );
         
-    const isfullNameValid = /^[a-zA-Z]+ [a-zA-Z]+$/.test(fullName)
 
     
     

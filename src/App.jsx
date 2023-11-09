@@ -1,8 +1,10 @@
+
 import Login from "./components/Login";
 
 const App = () => {
+
   return (
-    <div className=" font-sans">
+    <div>
       <Login />
     </div>
   );

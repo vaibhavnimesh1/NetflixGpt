@@ -9,6 +9,7 @@ import {
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
+  // const navigate = useNavigate()
   const [isSignin, setIsSignin] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [message, setMessage] = useState(null);
@@ -57,9 +58,9 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          // Navigate("/login")
-          setMessage("aagya")
+          // console.log(user);
+          Navigate("/browse")
+          
           // ...
         })
         .catch((error) => {

@@ -16,3 +16,5 @@ export const API_OPTION = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjQ0ZTUxYWViYjA0NTY5MThkNTFkNjdmOTRkNTk4YyIsInN1YiI6IjY0NGNhODIwZTJmZjMyMDUwMGQyOTVjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IQL-6oK3Xs2Jm5NjKbDzy2DagsonFfE22RAuMa2gK38",
   },
 };
+
+export const POSTER_IMG_URL= "https://image.tmdb.org/t/p/w185/"

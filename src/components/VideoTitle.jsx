@@ -1,4 +1,4 @@
-const VideoTitle = ({ title, des }) => {
+const VideoTitle = ({ title, des }) => { 
   return (
     <div className="w-full h-screen  pt-[15%] px-12 md:px-18 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-2xl md:text-3xl font-bold ">{title}</h1>
@@ -13,6 +13,5 @@ const VideoTitle = ({ title, des }) => {
       </div>
     </div>
   );
-};
-
+}
 export default VideoTitle;

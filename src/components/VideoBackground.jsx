@@ -9,11 +9,11 @@ const VideoBackground = ({ Id }) => {
   return (
     <div className="w-full">
       <iframe
-        className=" w-full h-screen  "
-        src={`https://www.youtube.com/embed/${trailerVideo}?&autoplay=1&mute=1&loop=1`}
+        className=" w-full h-screen object-contain "
+        src={`https://www.youtube.com/embed/${trailerVideo}?&autoplay=1&mute=5&loop=1`}
         title="YouTube video player"
         frameBorder="0"
-        allow="accelerometer;clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
     </div>

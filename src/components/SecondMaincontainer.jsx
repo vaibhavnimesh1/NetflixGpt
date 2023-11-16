@@ -11,8 +11,8 @@ const SecondMaincontainer = () => {
     <div className=" bg-black">
       <div className=" -mt-[100px] relative z-30">
         <MoviesList title={"Now Playing"} movies={moviesNowPlaying} />
-        <MoviesList title={"Popular Movies"} movies={moviesPopularMovies} />
         <MoviesList title={"Top Rated Movies"} movies={topRatedMovies} />
+        <MoviesList title={"Popular Movies"} movies={moviesPopularMovies} />
         <MoviesList title={"Upcoming Movies"} movies={upcomingMovies} />
       </div>
     </div>

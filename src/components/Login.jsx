@@ -10,6 +10,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { BG_IMG } from "../utils/constant";
+import BackgroundImage from "./BackgroundImage";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -62,7 +64,7 @@ const Login = () => {
                 })
               );
             })
-            .catch((error) => {
+            .catch(() => {
               // An error occurred
               // ...
             });
@@ -97,18 +99,13 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className="absolute bg-contain">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/ab4b0b22-2ddf-4d48-ae88-c201ae0267e2/0efe6360-4f6d-4b10-beb6-81e0762cfe81/IN-en-20231030-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="background-img"
-        />
-      </div>
+     <BackgroundImage/>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmitForm();
         }}
-        className="absolute rounded-lg w-3/12 p-8 z-40 my-20 mx-auto left-0 right-0 bg-opacity-80 bg-black text-white"
+        className=" w-[90%] p-8 absolute rounded-lg md:w-3/12 z-40 my-20 mx-auto left-0 right-0 bg-opacity-80 bg-black text-white "
       >
         <h1 className="text-2xl mb-7">{isSignin ? "Sign In" : "Sign Up"}</h1>
         {!isSignin && (
